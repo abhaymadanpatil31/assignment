@@ -1,6 +1,9 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:login_screen/View/home.dart";
+import "package:login_screen/View/login_page.dart";
+import "package:login_screen/View/otpscreen.dart";
+import "package:login_screen/main.dart";
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -11,6 +14,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State {
+  final TextEditingController _userController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,25 +44,33 @@ class _SignUpPageState extends State {
           const SizedBox(
             height: 20,
           ),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: TextField(
+              controller: _userController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                hintText: "Enter the Username",
+                label: Text("Enter the Username"),
               ),
-              hintText: "Enter the Username",
-              label: Text("Enter the Username"),
             ),
           ),
           const SizedBox(
             height: 30,
           ),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: TextField(
+              controller: _passController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                hintText: "Enter the Password",
+                label: Text("Enter the Password"),
               ),
-              hintText: "Enter the Password",
-              label: Text("Enter the Password"),
             ),
           ),
           const SizedBox(
@@ -72,8 +86,18 @@ class _SignUpPageState extends State {
             ),
             child: GestureDetector(
               onTap: () {
+                insertData(
+                  UserDetails(
+                    username: _userController.text.trim(),
+                    password: _passController.text.trim(),
+                  ),
+                );
+                _userController.clear();
+                _passController.clear();
+
+                // getDatabaseList();
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const HomePage()));
+                    MaterialPageRoute(builder: (context) => const OTPScreen()));
               },
               child: Text(
                 "Submit",

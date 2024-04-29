@@ -60,7 +60,8 @@ class _AccountInformState extends State {
             ),
             child: GestureDetector(
               onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context)=>const OTPScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const OTPScreen()));
               },
               child: Text(
                 "Submit",

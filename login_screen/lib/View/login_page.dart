@@ -74,10 +74,17 @@ class _LogicPageState extends State {
                 const SizedBox(
                   height: 20,
                 ),
-                Image.network(
-                  "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
-                  width: 90,
-                  height: 90,
+                Container(
+                  alignment: Alignment.center,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.amber,
+                    radius: 50,
+                    child: Image.asset(
+                      "assets/images/profileimg.jpg",
+                      width: 90,
+                      height: 90,
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -153,7 +160,7 @@ class _LogicPageState extends State {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomePage()));
+                                builder: (context) => const HomeScreen()));
                       } else {
                         const snackBar = SnackBar(
                           backgroundColor: Colors.red,
